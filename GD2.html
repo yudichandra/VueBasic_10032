@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Hallo, aku {{ wanita.nama }}</h2> 
+
+        <p>umurku {{ wanita.umur }} tahun dan ak bekerja sebagai seorang {{ wanita.pekerjaan }}.
+            <br>
+            Aku <span v-if="wanita.status == 'menikah'">
+                Sudah menikah
+            </span>
+            <span v-else-if="wanita.status == 'belum menikah'">
+                Masih lajang
+            </span>
+        </p>
+        <div>
+            <button @click="kurangiumur">Kurangi umurku</button>
+            <button @click="tambahumur">Tambah umurku</button>
+        </div>
+
+        <p v-show="wanita.skills">Kemampuanku adalah :</p>
+        <ul v-for="(skill,index) in wanita.skills" :key="index">
+            <li>{{skill}}</li>
+        </ul>
+       
+    </div>
+    <script>
+    new Vue({
+        el: '#app',
+        data:{
+            wanita:{
+                nama: 'Karen',
+                umur: 20,
+                pekerjaan : 'programer',
+                skills:[
+                    'mencuci piring',
+                    'coding'
+                ],
+                status: 'belum menikah'
+            }
+        },
+        methods:{
+            tambahumur(){
+                this.wanita.umur++;
+            },
+            kurangiumur(){
+                this.wanita.umur--;
+            },
+        },
+        
+    });
+</script>
+</body>
+</html>
